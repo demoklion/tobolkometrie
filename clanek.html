@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title id="pageTitle">Článek - Tobolkometrie</title>
+  <meta name="description" content="Článek z projektu Tobolkometrie">
+
+  <script data-goatcounter="https://demoklion.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+
+  <style>
+    :root {
+      --primary: #2563eb;
+      --primary-foreground: #ffffff;
+      --secondary: #64748b;
+      --background: #ffffff;
+      --foreground: #0f172a;
+      --muted: #cbd5e1;
+      --muted-foreground: #64748b;
+      --card: #ffffff;
+      --border: #e2e8f0;
+      --radius: 0.5rem;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      line-height: 1.6;
+      color: var(--foreground);
+      background: var(--background);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .font-serif {
+      font-family: Georgia, Cambria, "Times New Roman", Times, serif;
+    }
+
+    .container {
+      min-height: 100vh;
+    }
+
+    .header {
+      background: var(--foreground);
+      color: var(--background);
+      padding: 1rem 0;
+      margin-bottom: 3rem;
+    }
+
+    .header-content {
+      max-width: 1024px;
+      margin: 0 auto;
+      padding: 0 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .header h1 {
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+
+    .header a {
+      color: var(--background);
+      text-decoration: none;
+      padding: 0.5rem 1rem;
+      border-radius: var(--radius);
+      transition: background 0.2s;
+    }
+
+    .header a:hover {
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    .article-header {
+      max-width: 768px;
+      margin: 0 auto 3rem;
+      padding: 0 1rem;
+      text-align: center;
+    }
+
+    .article-category {
+      display: inline-block;
+      background: var(--primary);
+      color: var(--primary-foreground);
+      padding: 0.25rem 0.75rem;
+      border-radius: 9999px;
+      font-size: 0.875rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+
+    .article-title {
+      font-size: 2.5rem;
+      font-weight: bold;
+      margin-bottom: 1rem;
+    }
+
+    .article-meta {
+      color: var(--muted-foreground);
+      margin-bottom: 2rem;
+    }
+
+    .article-content {
+      max-width: 768px;
+      margin: 0 auto;
+      padding: 0 1rem 3rem;
+    }
+
+    .article-content h1 {
+      font-size: 2rem;
+      font-weight: bold;
+      margin: 2rem 0 1rem;
+    }
+
+    .article-content h2 {
+      font-size: 1.5rem;
+      font-weight: bold;
+      margin: 1.5rem 0 1rem;
+    }
+
+    .article-content h3 {
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin: 1.25rem 0 0.75rem;
+    }
+
+    .article-content p {
+      margin-bottom: 1rem;
+      line-height: 1.8;
+    }
+
+    .article-content ul,
+    .article-content ol {
+      margin-bottom: 1rem;
+      padding-left: 2rem;
+    }
+
+    .article-content li {
+      margin-bottom: 0.5rem;
+    }
+
+    .article-content strong {
+      font-weight: 600;
+    }
+
+    .article-content em {
+      font-style: italic;
+    }
+
+    .article-content blockquote {
+      border-left: 4px solid var(--primary);
+      padding-left: 1rem;
+      margin: 1.5rem 0;
+      color: var(--muted-foreground);
+      font-style: italic;
+    }
+
+    .back-link {
+      display: inline-block;
+      color: var(--primary);
+      text-decoration: none;
+      margin-bottom: 2rem;
+      font-weight: 500;
+    }
+
+    .back-link:hover {
+      text-decoration: underline;
+    }
+
+    .loading {
+      text-align: center;
+      padding: 3rem;
+      color: var(--muted-foreground);
+    }
+
+    footer {
+      background: var(--foreground);
+      color: var(--background);
+      padding: 2rem 1rem;
+      text-align: center;
+      margin-top: 3rem;
+    }
+
+    footer a {
+      color: var(--background);
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div class="header-content">
+      <h1 class="font-serif">Tobolkometrie</h1>
+      <a href="index.html">← Hlavní stránka</a>
+    </div>
+  </header>
+
+  <div class="container">
+    <div id="articleContainer">
+      <div class="loading">Načítání článku...</div>
+    </div>
+  </div>
+
+  <footer>
+    <p>© 2025 Tobolkometrie</p>
+  </footer>
+
+  <script>
+    // Get article slug from URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const slug = urlParams.get('slug');
+
+    // Article data (in production, this would be loaded from files)
+    const articles = {
+      '2025-11-historie-ceny': {
+        title: 'Historie ceny Z.V. Tobolky',
+        date: '2025-11-06',
+        author: 'Redakce',
+        category: 'Historie',
+        content: `
+# Historie ceny Z.V. Tobolky
+
+Cena Z.V. Tobolky je nejvýznamnější ocenění v oblasti českého knihovnictví. Je udělována od roku 1995 Svazem knihovníků a informačních pracovníků České republiky za mimořádný přínos k rozvoji českého knihovnictví.
+
+## Založení ceny
+
+V roce 1995 byla cena založena na počest **Zdeňka Václava Tobolky** (1874-1951), významného českého knihovníka a bibliografa, který působil jako ředitel Městské knihovny v Praze a významně přispěl k rozvoji českého knihovnického systému.
+
+## Význam ceny
+
+Cena je udělována osobnostem, které se dlouhodobě a mimořádně zasloužily o:
+
+- Rozvoj knihovnické teorie
+- Praxi v knihovnách
+- Vzdělávání knihovníků
+- Organizaci knihovnického oboru
+
+## První laureáti
+
+První udělení ceny proběhlo v roce 1995 a od té doby je každoročně oceňováno několik významných osobností českého knihovnictví.
+
+## Současnost
+
+Cena si udržuje vysokou prestiž a získání ocenění Z.V. Tobolky je považováno za vrchol profesní kariéry v oboru knihovnictví a informačních věd.
+        `
+      },
+      '2025-11-metodologie-vyzkumu': {
+        title: 'Metodologie tobolkometrického výzkumu',
+        date: '2025-11-06',
+        author: 'Redakce',
+        category: 'Metodologie',
+        content: `
+# Metodologie tobolkometrického výzkumu
+
+Tobolkometrie jako interdisciplinární vědecká oblast využívá řadu osvědčených metodologických přístupů z oblasti bibliometrie, sociologie a datové analýzy.
+
+## Základní principy
+
+Výzkum v oblasti tobolkometrie se opírá o tři základní pilíře:
+
+### 1. Systematický sběr dat
+
+Sběr informací probíhá z následujících zdrojů:
+
+- Veřejně dostupné databáze
+- Odborné publikační systémy
+- Archivní materiály
+- Oficiální dokumenty SKIP ČR
+
+### 2. Strukturovaná analýza
+
+Data jsou analyzována pomocí:
+
+- Deskriptivní statistiky
+- Korelační analýzy
+- Časových řad
+- Obsahové analýzy publikací
+
+### 3. Kvalitativní hodnocení
+
+Kromě kvantitativních metod je kladen důraz na:
+
+- Historický kontext
+- Společenský význam přínosu
+- Dlouhodobý dopad na obor
+
+## Etické principy
+
+Výzkum respektuje:
+
+- Ochranu osobních údajů
+- Transparentnost metod
+- Ověřitelnost výsledků
+- Akademickou integritu
+
+## Výstupy výzkumu
+
+Výsledky tobolkometrického výzkumu slouží k:
+
+- Dokumentaci historie českého knihovnictví
+- Identifikaci trendů v oboru
+- Podpore vzdělávání nových generací knihovníků
+- Prezentaci významu knihovnické profese
+        `
+      }
+    };
+
+    function parseMarkdown(md) {
+      let html = md.trim();
+
+      // Headers
+      html = html.replace(/^### (.*$)/gim, '<h3>$1</h3>');
+      html = html.replace(/^## (.*$)/gim, '<h2>$1</h2>');
+      html = html.replace(/^# (.*$)/gim, '<h1>$1</h1>');
+
+      // Bold and italic
+      html = html.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+      html = html.replace(/\*(.*?)\*/g, '<em>$1</em>');
+
+      // Lists
+      html = html.replace(/^\- (.*$)/gim, '<li>$1</li>');
+      html = html.replace(/(<li>.*<\/li>)/s, '<ul>$1</ul>');
+
+      // Paragraphs
+      html = html.split('\n\n').map(para => {
+        if (para.match(/^<[h|u|o]/)) return para;
+        if (para.trim() === '') return '';
+        return `<p>${para}</p>`;
+      }).join('\n');
+
+      return html;
+    }
+
+    function loadArticle() {
+      const container = document.getElementById('articleContainer');
+
+      if (!slug || !articles[slug]) {
+        container.innerHTML = `
+          <div class="article-content">
+            <a href="clanky.html" class="back-link">← Zpět na články</a>
+            <div class="loading">Článek nenalezen</div>
+          </div>
+        `;
+        return;
+      }
+
+      const article = articles[slug];
+      const date = new Date(article.date).toLocaleDateString('cs-CZ', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+      });
+
+      document.getElementById('pageTitle').textContent = `${article.title} - Tobolkometrie`;
+
+      const contentHtml = parseMarkdown(article.content);
+
+      container.innerHTML = `
+        <div class="article-header">
+          <div class="article-category">${article.category}</div>
+          <h1 class="article-title font-serif">${article.title}</h1>
+          <div class="article-meta">${date} • ${article.author}</div>
+        </div>
+        <div class="article-content">
+          <a href="clanky.html" class="back-link">← Zpět na články</a>
+          ${contentHtml}
+        </div>
+      `;
+    }
+
+    document.addEventListener('DOMContentLoaded', loadArticle);
+  </script>
+</body>
+</html>

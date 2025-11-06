@@ -31,7 +31,24 @@ Laureáti ceny jsou vybíráni na základě svého dlouhodobého a mimořádnéh
 
 ## Webová stránka
 
-Projekt je publikován jako statická webová stránka na GitHub Pages.
+Projekt je publikován na:
+- **Produkce**: https://tobolkometrie.cz (až bude DNS nakonfigurováno)
+- **GitHub Pages**: https://demoklion.github.io/tobolkometrie/ (dostupné nyní)
+
+### Funkce
+- 📊 **Databáze držitelů ceny** - 156 oceněných (1995-2024)
+- 🔍 **Vyhledávání a filtrování** - podle jména, instituce, roku
+- 📈 **Metodika hodnocení** - 5-tobolkový hodnotící systém
+- ✍️ **CMS pro editory** - Decap CMS pro správu obsahu
+- 📱 **Responzivní design** - funguje na mobilu i desktopu
+
+## Technologie
+
+- **Hosting**: GitHub Pages
+- **CMS**: Decap CMS (GitHub-based)
+- **Frontend**: Vanilla HTML/CSS/JavaScript
+- **Analytics**: GoatCounter
+- **Data**: JSON (156 záznamů z Excel)
 
 ## Licence
 

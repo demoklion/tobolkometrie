@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Držitelé ceny Z.V. Tobolky - Tobolkometrie</title>
+  <meta name="description" content="Kompletní databáze držitelů ceny Z.V. Tobolky od roku 1995">
+
+  <script data-goatcounter="https://demoklion.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+
+  <style>
+    :root {
+      --primary: #2563eb;
+      --primary-foreground: #ffffff;
+      --secondary: #64748b;
+      --background: #ffffff;
+      --foreground: #0f172a;
+      --muted: #cbd5e1;
+      --muted-foreground: #64748b;
+      --card: #ffffff;
+      --border: #e2e8f0;
+      --radius: 0.5rem;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      line-height: 1.6;
+      color: var(--foreground);
+      background: var(--background);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .font-serif {
+      font-family: Georgia, Cambria, "Times New Roman", Times, serif;
+    }
+
+    .header {
+      background: var(--foreground);
+      color: var(--background);
+      padding: 1rem 0;
+      margin-bottom: 2rem;
+    }
+
+    .header-content {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .header h1 {
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+
+    .header a {
+      color: var(--background);
+      text-decoration: none;
+      padding: 0.5rem 1rem;
+      border-radius: var(--radius);
+      transition: background 0.2s;
+    }
+
+    .header a:hover {
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 1rem 3rem;
+    }
+
+    .page-title {
+      font-size: 2.5rem;
+      font-weight: bold;
+      margin-bottom: 1rem;
+    }
+
+    .page-subtitle {
+      font-size: 1.125rem;
+      color: var(--muted-foreground);
+      margin-bottom: 2rem;
+    }
+
+    .stats-bar {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .stat-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      text-align: center;
+    }
+
+    .stat-value {
+      font-size: 2rem;
+      font-weight: bold;
+      color: var(--primary);
+    }
+
+    .stat-label {
+      font-size: 0.875rem;
+      color: var(--muted-foreground);
+      margin-top: 0.5rem;
+    }
+
+    .controls {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .controls-row {
+      display: grid;
+      grid-template-columns: 1fr auto auto;
+      gap: 1rem;
+      align-items: center;
+    }
+
+    @media (max-width: 768px) {
+      .controls-row {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .search-box {
+      position: relative;
+    }
+
+    .search-box input {
+      width: 100%;
+      padding: 0.75rem 1rem 0.75rem 2.5rem;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      font-size: 1rem;
+    }
+
+    .search-box::before {
+      content: "🔍";
+      position: absolute;
+      left: 0.75rem;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    .filter-select {
+      padding: 0.75rem 1rem;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: var(--background);
+      font-size: 0.875rem;
+      min-width: 150px;
+    }
+
+    .table-container {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+    }
+
+    .table-wrapper {
+      overflow-x: auto;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    thead {
+      background: rgba(37, 99, 235, 0.05);
+      border-bottom: 2px solid var(--border);
+    }
+
+    th {
+      padding: 1rem;
+      text-align: left;
+      font-weight: 600;
+      font-size: 0.875rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--foreground);
+      cursor: pointer;
+      user-select: none;
+    }
+
+    th:hover {
+      background: rgba(37, 99, 235, 0.1);
+    }
+
+    th.sortable::after {
+      content: " ⇅";
+      opacity: 0.3;
+    }
+
+    th.sort-asc::after {
+      content: " ↑";
+      opacity: 1;
+    }
+
+    th.sort-desc::after {
+      content: " ↓";
+      opacity: 1;
+    }
+
+    td {
+      padding: 1rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    tbody tr:hover {
+      background: rgba(37, 99, 235, 0.02);
+    }
+
+    .name-cell {
+      font-weight: 500;
+    }
+
+    .year-badge {
+      display: inline-block;
+      background: var(--primary);
+      color: var(--primary-foreground);
+      padding: 0.25rem 0.75rem;
+      border-radius: 9999px;
+      font-size: 0.875rem;
+      font-weight: 600;
+    }
+
+    .note-cell {
+      color: var(--muted-foreground);
+      font-size: 0.875rem;
+      max-width: 400px;
+    }
+
+    .empty-state {
+      text-align: center;
+      padding: 3rem;
+      color: var(--muted-foreground);
+    }
+
+    .pagination {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .pagination-info {
+      font-size: 0.875rem;
+      color: var(--muted-foreground);
+    }
+
+    .pagination-controls {
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    .page-btn {
+      padding: 0.5rem 1rem;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: var(--background);
+      cursor: pointer;
+      font-size: 0.875rem;
+    }
+
+    .page-btn:hover:not(:disabled) {
+      background: var(--primary);
+      color: var(--primary-foreground);
+      border-color: var(--primary);
+    }
+
+    .page-btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    footer {
+      background: var(--foreground);
+      color: var(--background);
+      padding: 2rem 1rem;
+      text-align: center;
+      margin-top: 3rem;
+    }
+
+    footer a {
+      color: var(--background);
+      text-decoration: none;
+      margin: 0 1rem;
+    }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div class="header-content">
+      <h1 class="font-serif">Tobolkometrie</h1>
+      <a href="index.html">← Hlavní stránka</a>
+    </div>
+  </header>
+
+  <div class="container">
+    <h1 class="page-title font-serif">Držitelé ceny Z.V. Tobolky</h1>
+    <p class="page-subtitle">Kompletní databáze oceněných od roku 1995</p>
+
+    <div class="stats-bar">
+      <div class="stat-card">
+        <div class="stat-value" id="totalCount">-</div>
+        <div class="stat-label">Celkem oceněných</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value" id="yearRange">-</div>
+        <div class="stat-label">Roky udělení</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value" id="filteredCount">-</div>
+        <div class="stat-label">Zobrazeno</div>
+      </div>
+    </div>
+
+    <div class="controls">
+      <div class="controls-row">
+        <div class="search-box">
+          <input type="text" id="searchInput" placeholder="Hledat podle jména, instituce nebo poznámky...">
+        </div>
+        <select id="yearFilter" class="filter-select">
+          <option value="">Všechny roky</option>
+        </select>
+        <select id="perPage" class="filter-select">
+          <option value="25">25 na stránku</option>
+          <option value="50" selected>50 na stránku</option>
+          <option value="100">100 na stránku</option>
+          <option value="999999">Vše</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="table-container">
+      <div class="table-wrapper">
+        <table id="recipientsTable">
+          <thead>
+            <tr>
+              <th class="sortable" data-column="Rok">Rok</th>
+              <th class="sortable" data-column="Příjmení">Příjmení</th>
+              <th class="sortable" data-column="Jméno">Jméno</th>
+              <th class="sortable" data-column="Instituce">Instituce</th>
+              <th data-column="Poznámka">Poznámka</th>
+            </tr>
+          </thead>
+          <tbody id="tableBody">
+            <tr>
+              <td colspan="5" class="empty-state">Načítání dat...</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="pagination">
+        <div class="pagination-info" id="paginationInfo">-</div>
+        <div class="pagination-controls">
+          <button class="page-btn" id="prevPage">← Předchozí</button>
+          <button class="page-btn" id="nextPage">Další →</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div>
+      <a href="index.html">Hlavní stránka</a>
+      <a href="metodika.html">Metodika hodnocení</a>
+      <a href="https://sdruk.cz/seznam-ocenenych/" target="_blank" rel="noopener">Seznam oceněných (SKIP ČR)</a>
+    </div>
+    <p style="margin-top: 1rem;">© 2025 Tobolkometrie</p>
+  </footer>
+
+  <script>
+    let allData = [];
+    let filteredData = [];
+    let currentPage = 1;
+    let itemsPerPage = 50;
+    let sortColumn = 'Rok';
+    let sortDirection = 'desc';
+
+    // Load data
+    async function loadData() {
+      try {
+        const response = await fetch('tobolka_data.json');
+        allData = await response.json();
+
+        // Populate year filter
+        const years = [...new Set(allData.map(r => r.Rok))].filter(y => y).sort((a, b) => b - a);
+        const yearFilter = document.getElementById('yearFilter');
+        years.forEach(year => {
+          const option = document.createElement('option');
+          option.value = year;
+          option.textContent = year;
+          yearFilter.appendChild(option);
+        });
+
+        // Update stats
+        updateStats();
+        filterAndSort();
+      } catch (error) {
+        console.error('Error loading data:', error);
+        document.getElementById('tableBody').innerHTML =
+          '<tr><td colspan="5" class="empty-state">Chyba při načítání dat</td></tr>';
+      }
+    }
+
+    function updateStats() {
+      document.getElementById('totalCount').textContent = allData.length;
+
+      const years = allData.map(r => r.Rok).filter(y => y);
+      const minYear = Math.min(...years);
+      const maxYear = Math.max(...years);
+      document.getElementById('yearRange').textContent = `${minYear}–${maxYear}`;
+    }
+
+    function filterAndSort() {
+      const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+      const yearFilter = document.getElementById('yearFilter').value;
+
+      // Filter
+      filteredData = allData.filter(record => {
+        const matchesSearch = !searchTerm ||
+          (record.Příjmení && record.Příjmení.toLowerCase().includes(searchTerm)) ||
+          (record.Jméno && record.Jméno.toLowerCase().includes(searchTerm)) ||
+          (record.Instituce && record.Instituce.toLowerCase().includes(searchTerm)) ||
+          (record.Poznámka && record.Poznámka.toLowerCase().includes(searchTerm));
+
+        const matchesYear = !yearFilter || record.Rok == yearFilter;
+
+        return matchesSearch && matchesYear;
+      });
+
+      // Sort
+      filteredData.sort((a, b) => {
+        let aVal = a[sortColumn];
+        let bVal = b[sortColumn];
+
+        // Handle null values
+        if (aVal === null || aVal === undefined) return 1;
+        if (bVal === null || bVal === undefined) return -1;
+
+        // Compare
+        if (typeof aVal === 'number' && typeof bVal === 'number') {
+          return sortDirection === 'asc' ? aVal - bVal : bVal - aVal;
+        }
+
+        aVal = String(aVal).toLowerCase();
+        bVal = String(bVal).toLowerCase();
+
+        if (sortDirection === 'asc') {
+          return aVal < bVal ? -1 : aVal > bVal ? 1 : 0;
+        } else {
+          return aVal > bVal ? -1 : aVal < bVal ? 1 : 0;
+        }
+      });
+
+      document.getElementById('filteredCount').textContent = filteredData.length;
+      currentPage = 1;
+      renderTable();
+    }
+
+    function renderTable() {
+      const tbody = document.getElementById('tableBody');
+      const start = (currentPage - 1) * itemsPerPage;
+      const end = start + itemsPerPage;
+      const pageData = filteredData.slice(start, end);
+
+      if (pageData.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="5" class="empty-state">Žádné záznamy</td></tr>';
+        updatePagination();
+        return;
+      }
+
+      tbody.innerHTML = pageData.map(record => `
+        <tr>
+          <td><span class="year-badge">${record.Rok || '-'}</span></td>
+          <td class="name-cell">${record.Příjmení || '-'}</td>
+          <td class="name-cell">${record.Jméno || '-'}</td>
+          <td>${record.Instituce || '-'}</td>
+          <td class="note-cell">${record.Poznámka || '-'}</td>
+        </tr>
+      `).join('');
+
+      updatePagination();
+      updateSortIndicators();
+    }
+
+    function updatePagination() {
+      const totalPages = Math.ceil(filteredData.length / itemsPerPage);
+      const start = (currentPage - 1) * itemsPerPage + 1;
+      const end = Math.min(currentPage * itemsPerPage, filteredData.length);
+
+      document.getElementById('paginationInfo').textContent =
+        `Zobrazeno ${start}–${end} z ${filteredData.length}`;
+
+      document.getElementById('prevPage').disabled = currentPage === 1;
+      document.getElementById('nextPage').disabled = currentPage >= totalPages;
+    }
+
+    function updateSortIndicators() {
+      document.querySelectorAll('th.sortable').forEach(th => {
+        th.classList.remove('sort-asc', 'sort-desc');
+        if (th.dataset.column === sortColumn) {
+          th.classList.add(`sort-${sortDirection}`);
+        }
+      });
+    }
+
+    // Event listeners
+    document.getElementById('searchInput').addEventListener('input', filterAndSort);
+    document.getElementById('yearFilter').addEventListener('change', filterAndSort);
+    document.getElementById('perPage').addEventListener('change', (e) => {
+      itemsPerPage = parseInt(e.target.value);
+      currentPage = 1;
+      renderTable();
+    });
+
+    document.getElementById('prevPage').addEventListener('click', () => {
+      if (currentPage > 1) {
+        currentPage--;
+        renderTable();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    });
+
+    document.getElementById('nextPage').addEventListener('click', () => {
+      const totalPages = Math.ceil(filteredData.length / itemsPerPage);
+      if (currentPage < totalPages) {
+        currentPage++;
+        renderTable();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    });
+
+    // Column sorting
+    document.querySelectorAll('th.sortable').forEach(th => {
+      th.addEventListener('click', () => {
+        const column = th.dataset.column;
+        if (sortColumn === column) {
+          sortDirection = sortDirection === 'asc' ? 'desc' : 'asc';
+        } else {
+          sortColumn = column;
+          sortDirection = 'asc';
+        }
+        filterAndSort();
+      });
+    });
+
+    // Load data on page load
+    loadData();
+  </script>
+</body>
+</html>

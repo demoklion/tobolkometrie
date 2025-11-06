@@ -10,20 +10,26 @@ The project name derives from **Zdeněk Václav Tobolka** (1874-1951), a promine
 
 ## Project Type
 
-- **Format**: Static HTML website with CMS
+- **Format**: Static HTML website with shared CSS design system
 - **Language**: Czech (cs)
 - **Hosting**: GitHub Pages
 - **Framework**: None (pure HTML/CSS/vanilla JS)
 - **CMS**: Decap CMS (formerly Netlify CMS)
-- **Dependencies**: Decap CMS via CDN
+- **Design System**: NTK Red accessible color scheme
+- **Dependencies**: Decap CMS via CDN, GoatCounter analytics
 
 ## File Structure
 
 ```
 tobolkometrie/
-├── index.html              # Homepage
+├── index.html              # Homepage (uses styles.css + page-specific layout)
+├── metodika.html           # Methodology page (5-tobolka rating system)
+├── drzitele.html           # Recipients database (156 records, searchable)
 ├── clanky.html            # Articles listing page
 ├── clanek.html            # Article detail template
+├── styles.css             # Shared NTK red design system (MAIN STYLESHEET)
+├── tobolka_data.json      # 156 recipient records (1995-2024)
+├── CNAME                  # Custom domain configuration
 ├── admin/
 │   ├── index.html         # Decap CMS admin interface
 │   ├── config.yml         # CMS configuration
@@ -67,24 +73,56 @@ Each page:
 
 ### CSS Architecture
 
+**IMPORTANT:** All pages must link to `styles.css` as the single source of truth for design system.
+
+- **Shared Stylesheet** - `styles.css` contains NTK red design system used across all pages
 - **CSS Variables** - Design tokens defined in `:root` for consistent theming
+- **Generic Fonts** - Uses `font-family: sans-serif` and `font-family: serif` (no specific font stacks)
 - **Responsive Design** - Mobile-first approach with breakpoints at 640px, 768px, 1024px
 - **Grid System** - CSS Grid for card layouts, responsive column counts
-- **No External Dependencies** - All styles embedded, no CSS frameworks
+- **High Contrast** - WCAG 2.1 AA compliant color contrasts
+- **No External Dependencies** - All styles in styles.css, no CSS frameworks
 
-### Design System Variables
+### NTK Red Design System Variables
+
+**Current color scheme (NTK Red - high contrast academic):**
 
 ```css
---primary: #2563eb (blue)
---secondary: #64748b (slate)
---background: #ffffff (white)
---foreground: #0f172a (dark blue)
---muted: #cbd5e1 (light gray)
---border: #e2e8f0 (border gray)
---radius: 0.5rem (border radius)
+--primary: #C41E3A         /* NTK Red */
+--primary-dark: #9B1528    /* Darker red for hover states */
+--primary-light: #E63946   /* Lighter red for accents */
+--primary-foreground: #ffffff
+--secondary: #2C3E50       /* Dark blue-gray */
+--background: #ffffff
+--foreground: #1a1a1a      /* Nearly black text */
+--muted: #f5f5f5           /* Light gray background */
+--muted-foreground: #333333
+--card: #ffffff
+--border: #cccccc
+--radius: 0.25rem          /* Smaller radius for sharper look */
+--accent: #8B0000          /* Dark red accent */
 ```
 
+**Typography:**
+- Body: `sans-serif`, 16px, line-height 1.75, weight 400
+- Serif headings: `serif`, weight 600
+- High contrast links: 2-3px underline thickness
+
+**Accessibility features:**
+- 3px focus outlines with 2px offset
+- High contrast link styling with thick underlines
+- Hover states increase underline thickness
+- 2px borders on form inputs (increases on hover/focus)
+
 ## Content Structure
+
+### Pages
+
+1. **index.html** - Homepage with hero section, research areas, about Z.V. Tobolka award, methodology
+2. **drzitele.html** - Searchable database of 156 recipients (1995-2024) with Jára Cimrman easter egg
+3. **metodika.html** - 5-tobolka rating system methodology (🍄 mushroom emoji scale)
+4. **clanky.html** - Articles listing (Decap CMS powered)
+5. **clanek.html** - Article detail page template
 
 ### Key Research Areas
 
@@ -96,11 +134,28 @@ The website presents six research domains:
 5. Databázové systémy (Database systems)
 6. Statistická analýza (Statistical analysis)
 
+### 5-Tobolka Rating System
+
+Recipients are rated 1-5 "tobolky" (mushrooms 🍄) based on:
+- **50%** - Přínos oboru (Contribution to field)
+- **50%** - Celkový dojem (Overall impression)
+
+**Scale:**
+- 5 tobolky: Výjimečný, transformativní vliv (Exceptional, transformative impact)
+- 4 tobolky: Vynikající, významný přínos (Outstanding, significant contribution)
+- 3 tobolky: Pozoruhodný, konzistentní dopad (Remarkable, consistent impact)
+- 2 tobolky: Standardní, splňuje očekávání (Standard, meets expectations)
+- 1 tobolka: Minimální, kontroverzní (Minimal, controversial)
+
 ### Methodology Steps
 
 1. Sběr dat (Data collection)
 2. Analýza a kategorizace (Analysis and categorization)
 3. Kvantitativní vyhodnocení (Quantitative evaluation)
+
+### Easter Eggs
+
+**Jára Cimrman** - Searching for "cimrman", "jára", or "jara" in drzitele.html reveals fictional 1896 recipient with golden badge styling.
 
 ## Development Commands
 
@@ -166,21 +221,46 @@ git push origin main
 
 ## Editing Guidelines
 
+### CSS Updates
+
+**CRITICAL RULES:**
+- All pages MUST link to `styles.css` as primary stylesheet
+- DO NOT duplicate CSS variables or base styles inline
+- Page-specific layout styles can be added in inline `<style>` tags
+- Use generic fonts: `font-family: sans-serif` and `font-family: serif` only
+- Never override design tokens - always use CSS variables from styles.css
+
+**Pattern for page-specific styles:**
+```html
+<link rel="stylesheet" href="styles.css">
+<style>
+  /* Page-specific layout styles only */
+  .hero { ... }
+  .custom-layout { ... }
+</style>
+```
+
 ### Content Updates
 
 When updating content:
 - Maintain Czech language throughout
 - Preserve semantic HTML structure
-- Keep accessibility attributes (aria-hidden, etc.)
+- Keep accessibility attributes (aria-hidden, aria-label, etc.)
+- Use NTK red color scheme consistently
+- Add icons with aria-hidden="true" for decorative SVGs
+- Include external link indicators (↗) with aria-hidden="true"
 - Ensure all sections remain in order
 
 ### Styling Updates
 
 When modifying styles:
-- Use existing CSS variables for colors
+- Edit `styles.css` for design system changes (affects all pages)
+- Use existing CSS variables for colors - never hardcode colors
 - Maintain mobile-first responsive approach
 - Test at breakpoints: mobile (<640px), tablet (640-1024px), desktop (>1024px)
-- Keep all styles embedded in `<style>` tag
+- High contrast required: minimum WCAG 2.1 AA compliance
+- Links must have 2px underlines, 3px on hover
+- Focus states: 3px solid outline with 2px offset
 
 ### Adding New Sections
 
@@ -189,6 +269,7 @@ When adding new sections:
 2. Alternate `.section-alt` class for background variation
 3. Use `.section-content` or `.section-wide` for max-width containers
 4. Maintain consistent spacing with `section { padding: 4rem 1rem; }`
+5. Add accessible footer navigation with sitemap structure
 
 ### Icon Guidelines
 
@@ -198,6 +279,15 @@ SVG icons are embedded inline from Lucide icon set style:
 - stroke-width="2"
 - stroke-linecap="round"
 - stroke-linejoin="round"
+- Add `aria-hidden="true"` for decorative icons
+- Use emoji icons in footer navigation (🏠 🔗 etc.) with aria-hidden
+
+### Analytics
+
+**GoatCounter integration (privacy-focused):**
+- Script tag in `<head>`: `data-goatcounter="https://demoklion.goatcounter.com/count"`
+- Tracking iframe in footer: `<iframe src="https://demoklion.goatcounter.com?access-token=TOKEN"></iframe>`
+- Both required on every page
 
 ## GitHub Pages Configuration
 
@@ -205,6 +295,16 @@ The repository is configured to serve from:
 - **Branch**: main
 - **Path**: / (root)
 - **File**: index.html
+- **Custom Domain**: tobolkometrie.cz (requires DNS configuration at registrar)
+- **CNAME file**: Contains domain name for GitHub Pages
+
+**DNS Configuration (at Český hosting):**
+- CNAME record: `www` → `demoklion.github.io`
+- A records for apex domain → GitHub Pages IPs:
+  - 185.199.108.153
+  - 185.199.109.153
+  - 185.199.110.153
+  - 185.199.111.153
 
 No Jekyll processing (static HTML only).
 
@@ -213,17 +313,27 @@ No Jekyll processing (static HTML only).
 The award and project focus on Czech library science:
 - **Award Name**: Cena Z.V. Tobolky
 - **Awarded Since**: 1995
-- **Awarding Organization**: Svaz knihovníků a informačních pracovníků ČR (Czech Library Association)
-- **Named After**: Zdeněk Václav Tobolka, director of Prague Municipal Library
+- **Awarding Organization**: Svaz knihovníků a informačních pracovníků ČR (SKIP ČR)
+- **Named After**: Zdeněk Václav Tobolka (1874-1951), director of Prague Municipal Library
+- **Total Recipients**: 156 (1995-2024)
 
-## Future Enhancements
+## Current Status (January 2025)
 
-Potential additions (currently not implemented):
-- Database page for award recipients (#drzitele currently placeholder)
-- JavaScript for interactive features
-- Search functionality
-- Data visualization
-- Multi-page structure
+✅ **Completed:**
+- NTK red accessible design system in styles.css
+- Index page with hero, research areas, about section
+- Metodika page with 5-tobolka rating system
+- Drzitele database page with 156 searchable records
+- Jára Cimrman easter egg
+- GoatCounter analytics integration
+- Accessible footer with sitemap navigation
+- Decap CMS for article management
+- JSON data structure for recipients
+
+⏳ **Pending:**
+- DNS configuration at Český hosting for custom domain
+- Subpage consistency (metodika.html needs styles.css migration)
+- Article system implementation via CMS
 
 ## Browser Support
 

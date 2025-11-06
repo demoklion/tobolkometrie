@@ -1,0 +1,65 @@
+backend:
+  name: github
+  repo: demoklion/tobolkometrie
+  branch: main
+
+# Optional: Use when testing locally
+# local_backend: true
+
+media_folder: "images/uploads"
+public_folder: "/images/uploads"
+
+# Czech locale
+locale: 'cs'
+
+collections:
+  # Articles / Články
+  - name: "articles"
+    label: "Články"
+    label_singular: "Článek"
+    folder: "content/articles"
+    create: true
+    slug: "{{year}}-{{month}}-{{slug}}"
+    fields:
+      - {label: "Název", name: "title", widget: "string"}
+      - {label: "Datum publikace", name: "date", widget: "datetime", format: "YYYY-MM-DD", date_format: "DD.MM.YYYY", time_format: false}
+      - {label: "Autor", name: "author", widget: "string", default: "Redakce"}
+      - {label: "Kategorie", name: "category", widget: "select", options: ["Historie", "Metodologie", "Analýza", "Novinky", "Výzkum"]}
+      - {label: "Perex", name: "excerpt", widget: "text", required: false, hint: "Krátký úvodní text (1-2 věty)"}
+      - {label: "Obrázek", name: "image", widget: "image", required: false}
+      - {label: "Obsah", name: "body", widget: "markdown"}
+      - {label: "Publikováno", name: "published", widget: "boolean", default: true}
+
+  # Simple Pages / Stránky
+  - name: "pages"
+    label: "Stránky"
+    label_singular: "Stránka"
+    folder: "content/pages"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - {label: "Název", name: "title", widget: "string"}
+      - {label: "URL (slug)", name: "slug", widget: "string", hint: "např. 'o-projektu' pro URL /o-projektu"}
+      - {label: "Popis", name: "description", widget: "text", required: false}
+      - {label: "Obsah", name: "body", widget: "markdown"}
+      - {label: "Publikováno", name: "published", widget: "boolean", default: true}
+
+  # Award Recipients / Držitelé ceny
+  - name: "recipients"
+    label: "Držitelé ceny"
+    label_singular: "Držitel ceny"
+    folder: "content/recipients"
+    create: true
+    slug: "{{year}}-{{slug}}"
+    fields:
+      - {label: "Jméno", name: "name", widget: "string"}
+      - {label: "Rok udělení", name: "year", widget: "number", value_type: "int", min: 1995, max: 2030}
+      - {label: "Fotografie", name: "photo", widget: "image", required: false}
+      - {label: "Rok narození", name: "birthYear", widget: "number", value_type: "int", required: false}
+      - {label: "Rok úmrtí", name: "deathYear", widget: "number", value_type: "int", required: false}
+      - {label: "Organizace", name: "organization", widget: "string", required: false}
+      - {label: "Pozice", name: "position", widget: "string", required: false}
+      - {label: "Město", name: "city", widget: "string", required: false}
+      - {label: "Odůvodnění ceny", name: "citation", widget: "text", required: false}
+      - {label: "Biografie", name: "body", widget: "markdown"}
+      - {label: "Publikováno", name: "published", widget: "boolean", default: true}

@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Články - Tobolkometrie</title>
+  <meta name="description" content="Odborné články o tobolkometrii a české knihovnické obci">
+
+  <script data-goatcounter="https://demoklion.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+
+  <style>
+    :root {
+      --primary: #2563eb;
+      --primary-foreground: #ffffff;
+      --secondary: #64748b;
+      --background: #ffffff;
+      --foreground: #0f172a;
+      --muted: #cbd5e1;
+      --muted-foreground: #64748b;
+      --card: #ffffff;
+      --border: #e2e8f0;
+      --radius: 0.5rem;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      line-height: 1.6;
+      color: var(--foreground);
+      background: var(--background);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .font-serif {
+      font-family: Georgia, Cambria, "Times New Roman", Times, serif;
+    }
+
+    .container {
+      min-height: 100vh;
+      padding-top: 2rem;
+    }
+
+    .header {
+      background: var(--foreground);
+      color: var(--background);
+      padding: 1rem 0;
+      margin-bottom: 3rem;
+    }
+
+    .header-content {
+      max-width: 1024px;
+      margin: 0 auto;
+      padding: 0 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .header h1 {
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+
+    .header a {
+      color: var(--background);
+      text-decoration: none;
+      padding: 0.5rem 1rem;
+      border-radius: var(--radius);
+      transition: background 0.2s;
+    }
+
+    .header a:hover {
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    .content {
+      max-width: 1024px;
+      margin: 0 auto;
+      padding: 0 1rem 3rem;
+    }
+
+    h2 {
+      font-size: 2rem;
+      font-weight: bold;
+      margin-bottom: 2rem;
+    }
+
+    .filter-bar {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .filter-bar select {
+      padding: 0.5rem 1rem;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: var(--background);
+      color: var(--foreground);
+      font-size: 0.875rem;
+    }
+
+    .articles-grid {
+      display: grid;
+      gap: 2rem;
+      grid-template-columns: 1fr;
+    }
+
+    .article-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      transition: box-shadow 0.2s;
+    }
+
+    .article-card:hover {
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    }
+
+    .article-meta {
+      font-size: 0.875rem;
+      color: var(--muted-foreground);
+      margin-bottom: 0.5rem;
+    }
+
+    .article-category {
+      display: inline-block;
+      background: var(--primary);
+      color: var(--primary-foreground);
+      padding: 0.25rem 0.75rem;
+      border-radius: 9999px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+
+    .article-card h3 {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+
+    .article-card h3 a {
+      color: var(--foreground);
+      text-decoration: none;
+    }
+
+    .article-card h3 a:hover {
+      color: var(--primary);
+    }
+
+    .article-excerpt {
+      color: var(--muted-foreground);
+      margin-bottom: 1rem;
+    }
+
+    .read-more {
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .read-more:hover {
+      text-decoration: underline;
+    }
+
+    .loading {
+      text-align: center;
+      padding: 3rem;
+      color: var(--muted-foreground);
+    }
+
+    footer {
+      background: var(--foreground);
+      color: var(--background);
+      padding: 2rem 1rem;
+      text-align: center;
+      margin-top: 3rem;
+    }
+
+    footer a {
+      color: var(--background);
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div class="header-content">
+      <h1 class="font-serif">Tobolkometrie</h1>
+      <a href="index.html">← Hlavní stránka</a>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="content">
+      <h2 class="font-serif">Články</h2>
+
+      <div class="filter-bar">
+        <select id="categoryFilter">
+          <option value="">Všechny kategorie</option>
+          <option value="Historie">Historie</option>
+          <option value="Metodologie">Metodologie</option>
+          <option value="Analýza">Analýza</option>
+          <option value="Novinky">Novinky</option>
+          <option value="Výzkum">Výzkum</option>
+        </select>
+      </div>
+
+      <div id="articlesContainer" class="articles-grid">
+        <div class="loading">Načítání článků...</div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <p>© 2025 Tobolkometrie</p>
+  </footer>
+
+  <script>
+    // Simple Markdown parser (basic)
+    function parseMarkdown(md) {
+      return md
+        .replace(/^# (.*$)/gim, '<h1>$1</h1>')
+        .replace(/^## (.*$)/gim, '<h2>$1</h2>')
+        .replace(/^### (.*$)/gim, '<h3>$1</h3>')
+        .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+        .replace(/\*(.*?)\*/g, '<em>$1</em>')
+        .replace(/^\- (.*$)/gim, '<li>$1</li>')
+        .replace(/\n\n/g, '</p><p>')
+        .replace(/^(.+)$/gim, '<p>$1</p>');
+    }
+
+    // Parse front matter from markdown
+    function parseFrontMatter(content) {
+      const frontMatterMatch = content.match(/^---\n([\s\S]*?)\n---\n([\s\S]*)$/);
+      if (!frontMatterMatch) return null;
+
+      const frontMatter = {};
+      const lines = frontMatterMatch[1].split('\n');
+
+      lines.forEach(line => {
+        const match = line.match(/^(\w+):\s*(.*)$/);
+        if (match) {
+          frontMatter[match[1]] = match[2].replace(/^["'](.*)["']$/, '$1');
+        }
+      });
+
+      frontMatter.body = frontMatterMatch[2];
+      return frontMatter;
+    }
+
+    // Load articles
+    async function loadArticles() {
+      const container = document.getElementById('articlesContainer');
+      const categoryFilter = document.getElementById('categoryFilter');
+
+      try {
+        // In production, these would be loaded from the content/articles folder
+        // For now, we'll use the GitHub API to fetch them
+        const articles = [
+          {
+            file: 'content/articles/2025-11-historie-ceny.md',
+            title: 'Historie ceny Z.V. Tobolky',
+            date: '2025-11-06',
+            author: 'Redakce',
+            category: 'Historie',
+            excerpt: 'Cena Z.V. Tobolky je nejvýznamnější ocenění v oblasti českého knihovnictví. Přinášíme historii jejího vzniku a vývoje.',
+            slug: '2025-11-historie-ceny'
+          },
+          {
+            file: 'content/articles/2025-11-metodologie-vyzkumu.md',
+            title: 'Metodologie tobolkometrického výzkumu',
+            date: '2025-11-06',
+            author: 'Redakce',
+            category: 'Metodologie',
+            excerpt: 'Podrobný přehled vědeckých metod používaných při analýze knihovnické obce a nositelů ceny Z.V. Tobolky.',
+            slug: '2025-11-metodologie-vyzkumu'
+          }
+        ];
+
+        function renderArticles(filteredArticles) {
+          container.innerHTML = '';
+
+          if (filteredArticles.length === 0) {
+            container.innerHTML = '<div class="loading">Žádné články k zobrazení</div>';
+            return;
+          }
+
+          filteredArticles.forEach(article => {
+            const card = document.createElement('div');
+            card.className = 'article-card';
+
+            const date = new Date(article.date).toLocaleDateString('cs-CZ', {
+              year: 'numeric',
+              month: 'long',
+              day: 'numeric'
+            });
+
+            card.innerHTML = `
+              <div class="article-category">${article.category}</div>
+              <h3><a href="clanek.html?slug=${article.slug}">${article.title}</a></h3>
+              <div class="article-meta">${date} • ${article.author}</div>
+              <p class="article-excerpt">${article.excerpt}</p>
+              <a href="clanek.html?slug=${article.slug}" class="read-more">Číst více →</a>
+            `;
+
+            container.appendChild(card);
+          });
+        }
+
+        renderArticles(articles);
+
+        // Category filter
+        categoryFilter.addEventListener('change', (e) => {
+          const category = e.target.value;
+          const filtered = category
+            ? articles.filter(a => a.category === category)
+            : articles;
+          renderArticles(filtered);
+        });
+
+      } catch (error) {
+        container.innerHTML = '<div class="loading">Chyba při načítání článků</div>';
+        console.error('Error loading articles:', error);
+      }
+    }
+
+    // Load articles on page load
+    document.addEventListener('DOMContentLoaded', loadArticles);
+  </script>
+</body>
+</html>

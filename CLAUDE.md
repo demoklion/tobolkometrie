@@ -10,33 +10,60 @@ The project name derives from **Zdeněk Václav Tobolka** (1874-1951), a promine
 
 ## Project Type
 
-- **Format**: Single-page static HTML website
+- **Format**: Static HTML website with CMS
 - **Language**: Czech (cs)
 - **Hosting**: GitHub Pages
-- **Framework**: None (pure HTML/CSS)
-- **Dependencies**: None
+- **Framework**: None (pure HTML/CSS/vanilla JS)
+- **CMS**: Decap CMS (formerly Netlify CMS)
+- **Dependencies**: Decap CMS via CDN
 
 ## File Structure
 
 ```
 tobolkometrie/
-├── index.html          # Main single-page website
-├── README.md           # Project documentation
-└── CLAUDE.md          # This file
+├── index.html              # Homepage
+├── clanky.html            # Articles listing page
+├── clanek.html            # Article detail template
+├── admin/
+│   ├── index.html         # Decap CMS admin interface
+│   ├── config.yml         # CMS configuration
+│   └── README.md          # Editor documentation (Czech)
+├── content/
+│   ├── articles/          # Article markdown files
+│   ├── pages/             # Static page markdown files
+│   └── recipients/        # Award recipient profiles (future)
+├── images/
+│   └── uploads/           # User-uploaded images
+├── README.md              # Project documentation
+├── CLAUDE.md              # This file
+└── .gitignore             # Git ignore rules
 ```
 
 ## Architecture
 
-### Single-Page Application Structure
+### Content Management System (CMS)
 
-The website is built as a single HTML file with embedded CSS, structured as follows:
+**Decap CMS** provides a visual editor for non-technical users to manage content:
 
-1. **Hero Section** - Introduction with project title and main CTAs
-2. **About Section** - Explanation of Tobolkometrie as a discipline
-3. **Research Areas** - Six key research areas displayed in card grid
-4. **Award Information** - Details about Z.V. Tobolka award
-5. **Methodology** - Three-step research methodology
-6. **Footer** - Project credits and copyright
+- **Admin Interface**: `/admin/` - Visual WYSIWYG editor accessible via GitHub OAuth
+- **Content Storage**: Markdown files in `/content/` directory
+- **Workflow**: Edit in CMS → Commit to GitHub → Auto-deploy via GitHub Pages
+- **No Backend**: Completely static, uses GitHub as database
+
+### Website Structure
+
+The site consists of multiple HTML pages:
+
+1. **index.html** - Homepage with hero, research areas, methodology
+2. **clanky.html** - Articles listing with filtering
+3. **clanek.html** - Article detail page (dynamic content loading)
+4. **admin/** - CMS admin interface
+
+Each page:
+- Uses shared CSS variables for consistency
+- Includes GoatCounter analytics
+- Fully responsive (mobile-first)
+- No build process required
 
 ### CSS Architecture
 
@@ -77,34 +104,65 @@ The website presents six research domains:
 
 ## Development Commands
 
-Since this is a static HTML project with no build process:
-
 ### Local Development
 
 ```bash
 # Open in browser (macOS)
 open index.html
 
-# Start simple HTTP server (Python)
+# Start simple HTTP server (Python) - required for CMS testing
+python3 -m http.server 8000
+# Then visit: http://localhost:8000
+
+# Start simple HTTP server (Node.js)
+npx http-server -p 8000
+```
+
+**Note:** For testing the CMS locally, you need to run a local server. Opening `index.html` directly won't work for the admin interface.
+
+### Testing Decap CMS Locally (Optional)
+
+```bash
+# Install Decap CMS proxy for local testing
+npx decap-server
+
+# In another terminal, start HTTP server
 python3 -m http.server 8000
 
-# Start simple HTTP server (Node.js - requires installation)
-npx http-server
+# Update admin/config.yml to enable local backend (uncomment line)
 ```
 
 ### Publishing
 
-The site is published via GitHub Pages. To update:
+The site is published via GitHub Pages automatically:
 
 ```bash
-# Make changes to index.html
-# Commit and push
-git add index.html
+# Make changes to HTML or content files
+git add .
 git commit -m "Description of changes"
 git push origin main
 ```
 
-GitHub Pages automatically serves the site from the `main` branch.
+GitHub Pages auto-deploys within 1-2 minutes.
+
+### Content Editing
+
+**Non-technical users** should use the CMS at `/admin/`:
+1. Visit `https://tobolkometrie.cz/admin/`
+2. Login with GitHub
+3. Create/edit content visually
+4. Click "Publish" - changes go live automatically
+
+**Technical users** can edit Markdown files directly:
+```bash
+# Edit article
+vim content/articles/2025-11-new-article.md
+
+# Commit and push
+git add content/articles/2025-11-new-article.md
+git commit -m "Add new article"
+git push origin main
+```
 
 ## Editing Guidelines
 

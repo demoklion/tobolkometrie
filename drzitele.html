@@ -399,6 +399,15 @@
     let sortColumn = 'Rok';
     let sortDirection = 'desc';
 
+    // Easter egg: Jára Cimrman
+    const cimrmanData = {
+      "Příjmení": "Cimrman",
+      "Jméno": "Jára",
+      "Instituce": "Lijavecká lidová knihovna a čítárna",
+      "Rok": 1896,
+      "Poznámka": "za vynález desítkové soustavy třídění knih, konstrukci prvního knihobusu (tažený koněm) a průkopnickou práci v oblasti čtenářských průkazů (dřevěných). Posmrtně."
+    };
+
     // Load data
     async function loadData() {
       try {
@@ -438,6 +447,10 @@
       const searchTerm = document.getElementById('searchInput').value.toLowerCase();
       const yearFilter = document.getElementById('yearFilter').value;
 
+      // Easter egg: Check if searching for Cimrman
+      const isCimrmanSearch = searchTerm.includes('cimrman') || searchTerm.includes('jára') ||
+                              searchTerm.includes('jara') || searchTerm.includes('cimerman');
+
       // Filter
       filteredData = allData.filter(record => {
         const matchesSearch = !searchTerm ||
@@ -450,6 +463,11 @@
 
         return matchesSearch && matchesYear;
       });
+
+      // Add Cimrman if searching for him (and no year filter or matching 1896)
+      if (isCimrmanSearch && (!yearFilter || yearFilter == '1896')) {
+        filteredData.unshift(cimrmanData);
+      }
 
       // Sort
       filteredData.sort((a, b) => {
@@ -492,15 +510,17 @@
         return;
       }
 
-      tbody.innerHTML = pageData.map(record => `
-        <tr>
-          <td><span class="year-badge">${record.Rok || '-'}</span></td>
-          <td class="name-cell">${record.Příjmení || '-'}</td>
+      tbody.innerHTML = pageData.map(record => {
+        const isCimrman = record.Příjmení === 'Cimrman' && record.Jméno === 'Jára';
+        return `
+        <tr${isCimrman ? ' style="background: linear-gradient(90deg, rgba(255,215,0,0.1) 0%, rgba(255,215,0,0.05) 100%); font-style: italic;"' : ''}>
+          <td><span class="year-badge"${isCimrman ? ' style="background: #d4af37; color: white;"' : ''}>${record.Rok || '-'}</span></td>
+          <td class="name-cell">${record.Příjmení || '-'}${isCimrman ? ' ✨' : ''}</td>
           <td class="name-cell">${record.Jméno || '-'}</td>
           <td>${record.Instituce || '-'}</td>
           <td class="note-cell">${record.Poznámka || '-'}</td>
         </tr>
-      `).join('');
+      `}).join('');
 
       updatePagination();
       updateSortIndicators();

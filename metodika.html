@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Metodika hodnocení - Tobolkometrie</title>
+  <meta name="description" content="Metodika hodnocení držitelů ceny Z.V. Tobolky - tobolkometrický hodnotící systém">
+
+  <script data-goatcounter="https://demoklion.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+
+  <style>
+    :root {
+      --primary: #2563eb;
+      --primary-foreground: #ffffff;
+      --secondary: #64748b;
+      --background: #ffffff;
+      --foreground: #0f172a;
+      --muted: #cbd5e1;
+      --muted-foreground: #64748b;
+      --card: #ffffff;
+      --border: #e2e8f0;
+      --radius: 0.5rem;
+      --accent: #10b981;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      line-height: 1.6;
+      color: var(--foreground);
+      background: var(--background);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .font-serif {
+      font-family: Georgia, Cambria, "Times New Roman", Times, serif;
+    }
+
+    .container {
+      min-height: 100vh;
+    }
+
+    .header {
+      background: var(--foreground);
+      color: var(--background);
+      padding: 1rem 0;
+      margin-bottom: 3rem;
+    }
+
+    .header-content {
+      max-width: 1024px;
+      margin: 0 auto;
+      padding: 0 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .header h1 {
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+
+    .header a {
+      color: var(--background);
+      text-decoration: none;
+      padding: 0.5rem 1rem;
+      border-radius: var(--radius);
+      transition: background 0.2s;
+    }
+
+    .header a:hover {
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    .content {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 0 1rem 3rem;
+    }
+
+    h2 {
+      font-size: 2rem;
+      font-weight: bold;
+      margin-bottom: 1.5rem;
+      color: var(--foreground);
+    }
+
+    h3 {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin: 2rem 0 1rem;
+      color: var(--foreground);
+    }
+
+    h4 {
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin: 1.5rem 0 0.75rem;
+      color: var(--foreground);
+    }
+
+    p {
+      margin-bottom: 1rem;
+      line-height: 1.8;
+      color: var(--muted-foreground);
+    }
+
+    .intro {
+      font-size: 1.125rem;
+      color: var(--foreground);
+      margin-bottom: 2rem;
+      padding: 1.5rem;
+      background: rgba(37, 99, 235, 0.05);
+      border-left: 4px solid var(--primary);
+      border-radius: var(--radius);
+    }
+
+    .rating-system {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 2rem;
+      margin: 2rem 0;
+    }
+
+    .rating-scale {
+      display: grid;
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+
+    .rating-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      padding: 1rem;
+      background: var(--background);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .rating-item:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    }
+
+    .tobolkas {
+      font-size: 1.5rem;
+      min-width: 100px;
+      font-weight: bold;
+      color: var(--primary);
+    }
+
+    .tobolka-icon {
+      color: var(--accent);
+      font-size: 1.2rem;
+    }
+
+    .rating-description {
+      flex: 1;
+    }
+
+    .rating-description strong {
+      display: block;
+      font-size: 1.125rem;
+      margin-bottom: 0.25rem;
+      color: var(--foreground);
+    }
+
+    .criteria-section {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 2rem;
+      margin: 2rem 0;
+    }
+
+    .criteria-list {
+      list-style: none;
+      padding: 0;
+    }
+
+    .criteria-list li {
+      padding: 0.75rem 0;
+      padding-left: 1.5rem;
+      position: relative;
+      color: var(--muted-foreground);
+    }
+
+    .criteria-list li:before {
+      content: "✓";
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-weight: bold;
+    }
+
+    .weight-badge {
+      display: inline-block;
+      background: var(--primary);
+      color: var(--primary-foreground);
+      padding: 0.25rem 0.75rem;
+      border-radius: 9999px;
+      font-size: 0.875rem;
+      font-weight: 600;
+      margin-left: 0.5rem;
+    }
+
+    .info-box {
+      background: rgba(16, 185, 129, 0.1);
+      border: 1px solid var(--accent);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      margin: 2rem 0;
+    }
+
+    .info-box h4 {
+      color: var(--accent);
+      margin-top: 0;
+    }
+
+    footer {
+      background: var(--foreground);
+      color: var(--background);
+      padding: 2rem 1rem;
+      text-align: center;
+      margin-top: 3rem;
+    }
+
+    footer a {
+      color: var(--background);
+      text-decoration: none;
+      margin: 0 1rem;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div class="header-content">
+      <h1 class="font-serif">Tobolkometrie</h1>
+      <a href="index.html">← Hlavní stránka</a>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="content">
+      <h2 class="font-serif">Metodika hodnocení</h2>
+
+      <div class="intro">
+        <p><strong>Tobolkometrie</strong> je interdisciplinární vědecká oblast zabývající se systematickou analýzou české knihovnické obce, zejména nositelů prestižní ceny Z.V. Tobolky.</p>
+        <p>Název disciplíny je odvozen od jména <strong>Zdeňka Václava Tobolky</strong> (1874-1951), významného českého knihovníka a bibliografa, jehož odkaz žije v podobě ceny udělované za vynikající přínos českému knihovnictví.</p>
+      </div>
+
+      <h3>Hodnotící systém</h3>
+
+      <p>Držitelé ceny Z.V. Tobolky jsou hodnoceni na škále <strong>1-5 "tobolek"</strong> na základě dvou hlavních kritérií:</p>
+
+      <div class="criteria-section">
+        <h4>1. Přínos oboru <span class="weight-badge">50%</span></h4>
+        <ul class="criteria-list">
+          <li><strong>Rozsah a hloubka publikační činnosti</strong> - kvantita i kvalita odborných publikací</li>
+          <li><strong>Dopad inovací</strong> - zavádění nových metod a přístupů do praxe</li>
+          <li><strong>Vliv na teorii a praxi</strong> - ovlivnění dalšího vývoje oboru</li>
+          <li><strong>Mezinárodní uznání</strong> - působení a ohlas v zahraničí</li>
+          <li><strong>Zapojení do vzdělávání</strong> - příprava nových generací knihovníků</li>
+          <li><strong>Vedení projektů a institucí</strong> - organizační a řídící role</li>
+        </ul>
+      </div>
+
+      <div class="criteria-section">
+        <h4>2. Celkový dojem <span class="weight-badge">50%</span></h4>
+        <ul class="criteria-list">
+          <li><strong>Konzistence kariéry</strong> - kontinuita a dlouhodobost přínosu</li>
+          <li><strong>Šíře profesního záběru</strong> - různorodost aktivit a působení</li>
+          <li><strong>Trvalý odkaz</strong> - dlouhodobý vliv na generace knihovníků</li>
+          <li><strong>Zapojení do profesních organizací</strong> - aktivita v SKIP a dalších sdruženích</li>
+          <li><strong>Mentoringový přínos</strong> - vedení a inspirace kolegů</li>
+          <li><strong>Etická integrita</strong> - profesionální etika a příkladnost</li>
+        </ul>
+      </div>
+
+      <h3>Stupnice hodnocení</h3>
+
+      <div class="rating-system">
+        <div class="rating-scale">
+          <div class="rating-item">
+            <div class="tobolkas">
+              <span class="tobolka-icon">🍄🍄🍄🍄🍄</span>
+              <div>5 tobolek</div>
+            </div>
+            <div class="rating-description">
+              <strong>Výjimečný, transformativní vliv</strong>
+              <p>Osobnost zásadně ovlivnila směřování českého knihovnictví. Průkopnická díla mezinárodního významu. Trvalý vliv na generace knihovníků.</p>
+            </div>
+          </div>
+
+          <div class="rating-item">
+            <div class="tobolkas">
+              <span class="tobolka-icon">🍄🍄🍄🍄</span>
+              <div>4 tobolky</div>
+            </div>
+            <div class="rating-description">
+              <strong>Vynikající, významný přínos oboru</strong>
+              <p>Významné publikace a projekty s dlouhodobým dopadem. Uznávaná autorita v oboru. Silný vliv na teorii nebo praxi.</p>
+            </div>
+          </div>
+
+          <div class="rating-item">
+            <div class="tobolkas">
+              <span class="tobolka-icon">🍄🍄🍄</span>
+              <div>3 tobolky</div>
+            </div>
+            <div class="rating-description">
+              <strong>Pozoruhodný, konzistentní profesionální dopad</strong>
+              <p>Dlouhodobá kvalitní práce v oboru. Respektovaný odborník s trvalým přínosem. Standard excelence v českém knihovnictví.</p>
+            </div>
+          </div>
+
+          <div class="rating-item">
+            <div class="tobolkas">
+              <span class="tobolka-icon">🍄🍄</span>
+              <div>2 tobolky</div>
+            </div>
+            <div class="rating-description">
+              <strong>Standardní, splňuje očekávání ceny</strong>
+              <p>Solidní profesionální kariéra se zaslouženým oceněním. Příspěvky oboru jsou zřetelné, ale nikoliv transformativní.</p>
+            </div>
+          </div>
+
+          <div class="rating-item">
+            <div class="tobolkas">
+              <span class="tobolka-icon">🍄</span>
+              <div>1 tobolka</div>
+            </div>
+            <div class="rating-description">
+              <strong>Minimální, potenciálně kontroverzní ocenění</strong>
+              <p>Přínos oboru je obtížně identifikovatelný nebo sporný. Udělení ceny může být předmětem diskuse.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="info-box">
+        <h4>O ceně Z.V. Tobolky</h4>
+        <p>Cena je udělována od roku 1995 <strong>Svazem knihovníků a informačních pracovníků České republiky (SKIP ČR)</strong> za mimořádný přínos českému knihovnictví.</p>
+        <p>Oceněním jsou poctěny osobnosti, které se dlouhodobě zasloužily o rozvoj knihovnické teorie, praxe, vzdělávání nebo organizace knihovnického oboru.</p>
+      </div>
+
+      <h3>Metodologický přístup</h3>
+
+      <p>Tobolkometrické hodnocení kombinuje:</p>
+
+      <div class="criteria-section">
+        <ul class="criteria-list">
+          <li><strong>Bibliometrickou analýzu</strong> - kvantitativní hodnocení publikační činnosti</li>
+          <li><strong>Kvalitativní posouzení</strong> - obsahová analýza přínosu a vlivu</li>
+          <li><strong>Historický kontext</strong> - zohlednění doby a podmínek působení</li>
+          <li><strong>Komparativní perspektivu</strong> - srovnání s dalšími laureáty</li>
+          <li><strong>Dlouhodobý dopad</strong> - vliv na současnost oboru</li>
+        </ul>
+      </div>
+
+      <p style="margin-top: 2rem; padding-top: 2rem; border-top: 1px solid var(--border); color: var(--muted-foreground); font-size: 0.875rem;">
+        <em>Tato metodika slouží k objektivnímu a transparentnímu hodnocení přínosu jednotlivých laureátů ceny Z.V. Tobolky. Hodnocení vychází z veřejně dostupných zdrojů a akademických standardů.</em>
+      </p>
+    </div>
+  </div>
+
+  <footer>
+    <div>
+      <a href="index.html">Hlavní stránka</a>
+      <a href="https://sdruk.cz/seznam-ocenenych/" target="_blank" rel="noopener">Seznam oceněných (SKIP ČR)</a>
+    </div>
+    <p style="margin-top: 1rem;">© 2025 Tobolkometrie</p>
+  </footer>
+</body>
+</html>

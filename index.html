@@ -157,10 +157,6 @@
     }
 
     .award-visual {
-      background: linear-gradient(to bottom right, rgba(37, 99, 235, 0.2), rgba(100, 116, 139, 0.2));
-      border-radius: var(--radius);
-      padding: 2rem;
-      height: 24rem;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -195,7 +191,6 @@
         <div class="button-group">
           <a href="drzitele.html" class="btn btn-primary">Databáze držitelů ceny</a>
           <a href="clanky.html" class="btn btn-secondary">Články a výzkum</a>
-          <a href="#o-cene" class="btn btn-secondary">O ceně Z.V. Tobolky</a>
         </div>
       </div>
     </section>
@@ -252,85 +247,35 @@
     </section>
 
     <section class="section-alt">
-      <div class="section-wide">
-        <h2 class="font-serif">Klíčové oblasti výzkumu</h2>
-        <div class="grid">
-          <div class="card">
-            <svg class="card-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
-              <circle cx="9" cy="7" r="4"></circle>
-              <path d="M22 21v-2a4 4 0 0 0-3-3.87"></path>
-              <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
-            </svg>
-            <h3>Demografická analýza</h3>
-            <p>Systematické zkoumání demografických charakteristik nositelů ceny, včetně věkové struktury, geografického rozložení a kariérních trajektorií.</p>
-          </div>
-
-          <div class="card">
-            <svg class="card-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
-              <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
-            </svg>
-            <h3>Publikační aktivita</h3>
-            <p>Analýza odborných publikací, jejich citační ohlasy a vliv na rozvoj knihovnické teorie a praxe.</p>
-          </div>
-
-          <div class="card">
-            <svg class="card-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
-            </svg>
-            <h3>Trendy a vzorce</h3>
-            <p>Identifikace dlouhodobých trendů v udělování ceny a jejich vztah k vývoji knihovnictví v českém kontextu.</p>
-          </div>
-
-          <div class="card">
-            <svg class="card-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <circle cx="12" cy="8" r="6"></circle>
-              <path d="M15.477 12.89 17 21.385a.5.5 0 0 1-.81.47L12.7 18.97a1 1 0 0 0-1.2 0l-3.49 2.885a.5.5 0 0 1-.81-.47l1.523-8.495"></path>
-            </svg>
-            <h3>Hodnocení přínosu</h3>
-            <p>Kvantitativní a kvalitativní hodnocení přínosu laureátů k rozvoji české knihovnické obce.</p>
-          </div>
-
-          <div class="card">
-            <svg class="card-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <ellipse cx="12" cy="5" rx="9" ry="3"></ellipse>
-              <path d="M3 5V19A9 3 0 0 0 21 19V5"></path>
-              <path d="M3 12A9 3 0 0 0 21 12"></path>
-            </svg>
-            <h3>Databázové systémy</h3>
-            <p>Vytváření a správa strukturovaných databází obsahujících komplexní informace o nositelích ceny.</p>
-          </div>
-
-          <div class="card">
-            <svg class="card-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M3 3v18h18"></path>
-              <path d="m19 9-5 5-4-4-3 3"></path>
-            </svg>
-            <h3>Statistická analýza</h3>
-            <p>Aplikace pokročilých statistických metod pro odhalení skrytých vzorců a korelací v datech.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="o-cene">
       <div class="section-content">
-        <div class="about-grid">
-          <div>
-            <h2 class="font-serif" style="text-align: left;">Cena Z.V. Tobolky</h2>
-            <div class="prose">
-              <p>Cena Z.V. Tobolky je nejvýznamnější ocenění v oblasti českého knihovnictví. Je udělována od roku 1995 Svazem knihovníků a informačních pracovníků České republiky.</p>
-              <p>Cena je pojmenována po Zdeňku Václavovi Tobolkovi, který byl klíčovou postavou českého knihovnictví v první polovině 20. století. Působil jako ředitel Městské knihovny v Praze a významně přispěl k rozvoji českého knihovnického systému.</p>
-              <p>Laureáti ceny jsou vybíráni na základě svého dlouhodobého a mimořádného přínosu k rozvoji knihovnictví, ať už v oblasti teorie, praxe, vzdělávání nebo organizace.</p>
-            </div>
-          </div>
-          <div class="award-visual">
-            <svg class="award-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <circle cx="12" cy="8" r="6"></circle>
-              <path d="M15.477 12.89 17 21.385a.5.5 0 0 1-.81.47L12.7 18.97a1 1 0 0 0-1.2 0l-3.49 2.885a.5.5 0 0 1-.81-.47l1.523-8.495"></path>
-            </svg>
-          </div>
+        <h2 class="font-serif">Klíčové oblasti výzkumu</h2>
+        <div style="background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 2rem;">
+          <ul style="list-style: none; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem;">
+            <li style="display: flex; align-items: flex-start; gap: 0.75rem;">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--primary); flex-shrink: 0; margin-top: 0.25rem;" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+              <span><strong>Demografická analýza</strong> - věková struktura, geografické rozložení</span>
+            </li>
+            <li style="display: flex; align-items: flex-start; gap: 0.75rem;">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--primary); flex-shrink: 0; margin-top: 0.25rem;" aria-hidden="true"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>
+              <span><strong>Publikační aktivita</strong> - analýza odborných publikací a citací</span>
+            </li>
+            <li style="display: flex; align-items: flex-start; gap: 0.75rem;">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--primary); flex-shrink: 0; margin-top: 0.25rem;" aria-hidden="true"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
+              <span><strong>Trendy a vzorce</strong> - dlouhodobé trendy v udělování ceny</span>
+            </li>
+            <li style="display: flex; align-items: flex-start; gap: 0.75rem;">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--primary); flex-shrink: 0; margin-top: 0.25rem;" aria-hidden="true"><circle cx="12" cy="8" r="6"></circle><path d="M15.477 12.89 17 21.385a.5.5 0 0 1-.81.47L12.7 18.97a1 1 0 0 0-1.2 0l-3.49 2.885a.5.5 0 0 1-.81-.47l1.523-8.495"></path></svg>
+              <span><strong>Hodnocení přínosu</strong> - kvantitativní a kvalitativní hodnocení</span>
+            </li>
+            <li style="display: flex; align-items: flex-start; gap: 0.75rem;">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--primary); flex-shrink: 0; margin-top: 0.25rem;" aria-hidden="true"><ellipse cx="12" cy="5" rx="9" ry="3"></ellipse><path d="M3 5V19A9 3 0 0 0 21 19V5"></path><path d="M3 12A9 3 0 0 0 21 12"></path></svg>
+              <span><strong>Databázové systémy</strong> - správa strukturovaných dat</span>
+            </li>
+            <li style="display: flex; align-items: flex-start; gap: 0.75rem;">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--primary); flex-shrink: 0; margin-top: 0.25rem;" aria-hidden="true"><path d="M3 3v18h18"></path><path d="m19 9-5 5-4-4-3 3"></path></svg>
+              <span><strong>Statistická analýza</strong> - pokročilé statistické metody</span>
+            </li>
+          </ul>
         </div>
       </div>
     </section>
@@ -362,23 +307,51 @@
             <div>
               <h4 style="color: var(--primary-light); margin-bottom: 1rem; font-size: 1rem; font-weight: 600;">Navigace</h4>
               <ul style="list-style: none; padding: 0;">
-                <li style="margin-bottom: 0.5rem;"><a href="index.html">🏠 Hlavní stránka</a></li>
-                <li style="margin-bottom: 0.5rem;"><a href="drzitele.html">👥 Databáze držitelů ceny</a></li>
-                <li style="margin-bottom: 0.5rem;"><a href="metodika.html">📊 Metodika hodnocení</a></li>
-                <li style="margin-bottom: 0.5rem;"><a href="clanky.html">📝 Články a výzkum</a></li>
+                <li style="margin-bottom: 0.5rem;">
+                  <a href="index.html" style="display: inline-flex; align-items: center; gap: 0.5rem;">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+                    Hlavní stránka
+                  </a>
+                </li>
+                <li style="margin-bottom: 0.5rem;">
+                  <a href="drzitele.html" style="display: inline-flex; align-items: center; gap: 0.5rem;">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                    Databáze držitelů ceny
+                  </a>
+                </li>
+                <li style="margin-bottom: 0.5rem;">
+                  <a href="metodika.html" style="display: inline-flex; align-items: center; gap: 0.5rem;">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" x2="12" y1="20" y2="10"></line><line x1="18" x2="18" y1="20" y2="4"></line><line x1="6" x2="6" y1="20" y2="16"></line></svg>
+                    Metodika hodnocení
+                  </a>
+                </li>
+                <li style="margin-bottom: 0.5rem;">
+                  <a href="clanky.html" style="display: inline-flex; align-items: center; gap: 0.5rem;">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>
+                    Články a výzkum
+                  </a>
+                </li>
+                <li style="margin-bottom: 0.5rem;">
+                  <a href="admin/" style="display: inline-flex; align-items: center; gap: 0.5rem;">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                    CMS Admin
+                  </a>
+                </li>
               </ul>
             </div>
             <div>
               <h4 style="color: var(--primary-light); margin-bottom: 1rem; font-size: 1rem; font-weight: 600;">Externí odkazy</h4>
               <ul style="list-style: none; padding: 0;">
                 <li style="margin-bottom: 0.5rem;">
-                  <a href="https://sdruk.cz/seznam-ocenenych/" target="_blank" rel="noopener" aria-label="Seznam oceněných na webu SKIP ČR (otevře se v novém okně)">
-                    🔗 Seznam oceněných (SKIP ČR) <span aria-hidden="true">↗</span>
+                  <a href="https://sdruk.cz/seznam-ocenenych/" target="_blank" rel="noopener" aria-label="Seznam oceněných na webu SKIP ČR (otevře se v novém okně)" style="display: inline-flex; align-items: center; gap: 0.5rem;">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
+                    Seznam oceněných (SKIP ČR) <span aria-hidden="true">↗</span>
                   </a>
                 </li>
                 <li style="margin-bottom: 0.5rem;">
-                  <a href="https://github.com/demoklion/tobolkometrie" target="_blank" rel="noopener" aria-label="Repozitář projektu na GitHubu (otevře se v novém okně)">
-                    🔗 GitHub repozitář <span aria-hidden="true">↗</span>
+                  <a href="https://github.com/demoklion/tobolkometrie" target="_blank" rel="noopener" aria-label="Repozitář projektu na GitHubu (otevře se v novém okně)" style="display: inline-flex; align-items: center; gap: 0.5rem;">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"></path><path d="M9 18c-4.51 2-5-2-7-2"></path></svg>
+                    GitHub repozitář <span aria-hidden="true">↗</span>
                   </a>
                 </li>
               </ul>

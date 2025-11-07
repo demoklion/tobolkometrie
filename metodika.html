@@ -6,42 +6,13 @@
   <title>Metodika hodnocení - Tobolkometrie</title>
   <meta name="description" content="Metodika hodnocení držitelů ceny Z.V. Tobolky - tobolkometrický hodnotící systém">
 
+  <link rel="stylesheet" href="styles.css">
+
   <script data-goatcounter="https://demoklion.goatcounter.com/count"
         async src="//gc.zgo.at/count.js"></script>
 
   <style>
-    :root {
-      --primary: #2563eb;
-      --primary-foreground: #ffffff;
-      --secondary: #64748b;
-      --background: #ffffff;
-      --foreground: #0f172a;
-      --muted: #cbd5e1;
-      --muted-foreground: #64748b;
-      --card: #ffffff;
-      --border: #e2e8f0;
-      --radius: 0.5rem;
-      --accent: #10b981;
-    }
-
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-      line-height: 1.6;
-      color: var(--foreground);
-      background: var(--background);
-      -webkit-font-smoothing: antialiased;
-    }
-
-    .font-serif {
-      font-family: Georgia, Cambria, "Times New Roman", Times, serif;
-    }
-
+    /* Metodika-specific styles */
     .container {
       min-height: 100vh;
     }
@@ -51,6 +22,7 @@
       color: var(--background);
       padding: 1rem 0;
       margin-bottom: 3rem;
+      border-bottom: 4px solid var(--primary);
     }
 
     .header-content {
@@ -65,11 +37,11 @@
     .header h1 {
       font-size: 1.5rem;
       font-weight: bold;
+      color: var(--background);
     }
 
     .header a {
       color: var(--background);
-      text-decoration: none;
       padding: 0.5rem 1rem;
       border-radius: var(--radius);
       transition: background 0.2s;
@@ -77,6 +49,7 @@
 
     .header a:hover {
       background: rgba(255, 255, 255, 0.1);
+      text-decoration: none;
     }
 
     .content {
@@ -117,14 +90,14 @@
       color: var(--foreground);
       margin-bottom: 2rem;
       padding: 1.5rem;
-      background: rgba(37, 99, 235, 0.05);
+      background: rgba(196, 30, 58, 0.05);
       border-left: 4px solid var(--primary);
       border-radius: var(--radius);
     }
 
     .rating-system {
       background: var(--card);
-      border: 1px solid var(--border);
+      border: 2px solid var(--border);
       border-radius: var(--radius);
       padding: 2rem;
       margin: 2rem 0;
@@ -142,14 +115,15 @@
       gap: 1rem;
       padding: 1rem;
       background: var(--background);
-      border: 1px solid var(--border);
+      border: 2px solid var(--border);
       border-radius: var(--radius);
-      transition: transform 0.2s, box-shadow 0.2s;
+      transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
     }
 
     .rating-item:hover {
       transform: translateY(-2px);
       box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+      border-color: var(--primary);
     }
 
     .tobolkas {
@@ -160,7 +134,7 @@
     }
 
     .tobolka-icon {
-      color: var(--accent);
+      color: var(--primary);
       font-size: 1.2rem;
     }
 
@@ -177,7 +151,7 @@
 
     .criteria-section {
       background: var(--card);
-      border: 1px solid var(--border);
+      border: 2px solid var(--border);
       border-radius: var(--radius);
       padding: 2rem;
       margin: 2rem 0;
@@ -199,7 +173,7 @@
       content: "✓";
       position: absolute;
       left: 0;
-      color: var(--accent);
+      color: var(--primary);
       font-weight: bold;
     }
 
@@ -215,34 +189,16 @@
     }
 
     .info-box {
-      background: rgba(16, 185, 129, 0.1);
-      border: 1px solid var(--accent);
+      background: rgba(196, 30, 58, 0.05);
+      border: 2px solid var(--primary);
       border-radius: var(--radius);
       padding: 1.5rem;
       margin: 2rem 0;
     }
 
     .info-box h4 {
-      color: var(--accent);
+      color: var(--primary);
       margin-top: 0;
-    }
-
-    footer {
-      background: var(--foreground);
-      color: var(--background);
-      padding: 2rem 1rem;
-      text-align: center;
-      margin-top: 3rem;
-    }
-
-    footer a {
-      color: var(--background);
-      text-decoration: none;
-      margin: 0 1rem;
-    }
-
-    footer a:hover {
-      text-decoration: underline;
     }
   </style>
 </head>
@@ -259,13 +215,12 @@
       <h2 class="font-serif">Metodika hodnocení</h2>
 
       <div class="intro">
-        <p><strong>Tobolkometrie</strong> je interdisciplinární vědecká oblast zabývající se systematickou analýzou české knihovnické obce, zejména nositelů prestižní ceny Z.V. Tobolky.</p>
-        <p>Název disciplíny je odvozen od jména <strong>Zdeňka Václava Tobolky</strong> (1874-1951), významného českého knihovníka a bibliografa, jehož odkaz žije v podobě ceny udělované za vynikající přínos českému knihovnictví.</p>
+        <p>Tobolkometrické hodnocení využívá dva komplementární přístupy: <strong>hodnocení individuálního přínosu</strong> jednotlivých laureátů (škála 1-5) a <strong>institucionální analýzu</strong> zaměřenou na počet laureátů spojených s jednotlivými institucemi a projekty.</p>
       </div>
 
-      <h3>Hodnotící systém</h3>
+      <h3>1. Individuální hodnocení laureátů</h3>
 
-      <p>Držitelé ceny Z.V. Tobolky jsou hodnoceni na škále <strong>1-5 "tobolek"</strong> na základě dvou hlavních kritérií:</p>
+      <p>Každý držitel ceny Z.V. Tobolky je hodnocen na škále <strong>1-5</strong> na základě dvou hlavních kritérií:</p>
 
       <div class="criteria-section">
         <h4>1. Přínos oboru <span class="weight-badge">50%</span></h4>
@@ -297,8 +252,14 @@
         <div class="rating-scale">
           <div class="rating-item">
             <div class="tobolkas">
-              <span class="tobolka-icon">🍄🍄🍄🍄🍄</span>
-              <div>5 tobolek</div>
+              <span class="tobolka-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="6"></circle><path d="M15.477 12.89 17 21.385a.5.5 0 0 1-.81.47L12.7 18.97a1 1 0 0 0-1.2 0l-3.49 2.885a.5.5 0 0 1-.81-.47l1.523-8.495"></path></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="6"></circle><path d="M15.477 12.89 17 21.385a.5.5 0 0 1-.81.47L12.7 18.97a1 1 0 0 0-1.2 0l-3.49 2.885a.5.5 0 0 1-.81-.47l1.523-8.495"></path></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="6"></circle><path d="M15.477 12.89 17 21.385a.5.5 0 0 1-.81.47L12.7 18.97a1 1 0 0 0-1.2 0l-3.49 2.885a.5.5 0 0 1-.81-.47l1.523-8.495"></path></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="6"></circle><path d="M15.477 12.89 17 21.385a.5.5 0 0 1-.81.47L12.7 18.97a1 1 0 0 0-1.2 0l-3.49 2.885a.5.5 0 0 1-.81-.47l1.523-8.495"></path></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="6"></circle><path d="M15.477 12.89 17 21.385a.5.5 0 0 1-.81.47L12.7 18.97a1 1 0 0 0-1.2 0l-3.49 2.885a.5.5 0 0 1-.81-.47l1.523-8.495"></path></svg>
+              </span>
+              <div>Hodnocení 5</div>
             </div>
             <div class="rating-description">
               <strong>Výjimečný, transformativní vliv</strong>
@@ -308,8 +269,13 @@
 
           <div class="rating-item">
             <div class="tobolkas">
-              <span class="tobolka-icon">🍄🍄🍄🍄</span>
-              <div>4 tobolky</div>
+              <span class="tobolka-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="6"></circle><path d="M15.477 12.89 17 21.385a.5.5 0 0 1-.81.47L12.7 18.97a1 1 0 0 0-1.2 0l-3.49 2.885a.5.5 0 0 1-.81-.47l1.523-8.495"></path></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="6"></circle><path d="M15.477 12.89 17 21.385a.5.5 0 0 1-.81.47L12.7 18.97a1 1 0 0 0-1.2 0l-3.49 2.885a.5.5 0 0 1-.81-.47l1.523-8.495"></path></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="6"></circle><path d="M15.477 12.89 17 21.385a.5.5 0 0 1-.81.47L12.7 18.97a1 1 0 0 0-1.2 0l-3.49 2.885a.5.5 0 0 1-.81-.47l1.523-8.495"></path></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="6"></circle><path d="M15.477 12.89 17 21.385a.5.5 0 0 1-.81.47L12.7 18.97a1 1 0 0 0-1.2 0l-3.49 2.885a.5.5 0 0 1-.81-.47l1.523-8.495"></path></svg>
+              </span>
+              <div>Hodnocení 4</div>
             </div>
             <div class="rating-description">
               <strong>Vynikající, významný přínos oboru</strong>
@@ -319,8 +285,12 @@
 
           <div class="rating-item">
             <div class="tobolkas">
-              <span class="tobolka-icon">🍄🍄🍄</span>
-              <div>3 tobolky</div>
+              <span class="tobolka-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="6"></circle><path d="M15.477 12.89 17 21.385a.5.5 0 0 1-.81.47L12.7 18.97a1 1 0 0 0-1.2 0l-3.49 2.885a.5.5 0 0 1-.81-.47l1.523-8.495"></path></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="6"></circle><path d="M15.477 12.89 17 21.385a.5.5 0 0 1-.81.47L12.7 18.97a1 1 0 0 0-1.2 0l-3.49 2.885a.5.5 0 0 1-.81-.47l1.523-8.495"></path></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="6"></circle><path d="M15.477 12.89 17 21.385a.5.5 0 0 1-.81.47L12.7 18.97a1 1 0 0 0-1.2 0l-3.49 2.885a.5.5 0 0 1-.81-.47l1.523-8.495"></path></svg>
+              </span>
+              <div>Hodnocení 3</div>
             </div>
             <div class="rating-description">
               <strong>Pozoruhodný, konzistentní profesionální dopad</strong>
@@ -330,8 +300,11 @@
 
           <div class="rating-item">
             <div class="tobolkas">
-              <span class="tobolka-icon">🍄🍄</span>
-              <div>2 tobolky</div>
+              <span class="tobolka-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="6"></circle><path d="M15.477 12.89 17 21.385a.5.5 0 0 1-.81.47L12.7 18.97a1 1 0 0 0-1.2 0l-3.49 2.885a.5.5 0 0 1-.81-.47l1.523-8.495"></path></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="6"></circle><path d="M15.477 12.89 17 21.385a.5.5 0 0 1-.81.47L12.7 18.97a1 1 0 0 0-1.2 0l-3.49 2.885a.5.5 0 0 1-.81-.47l1.523-8.495"></path></svg>
+              </span>
+              <div>Hodnocení 2</div>
             </div>
             <div class="rating-description">
               <strong>Standardní, splňuje očekávání ceny</strong>
@@ -341,8 +314,10 @@
 
           <div class="rating-item">
             <div class="tobolkas">
-              <span class="tobolka-icon">🍄</span>
-              <div>1 tobolka</div>
+              <span class="tobolka-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="6"></circle><path d="M15.477 12.89 17 21.385a.5.5 0 0 1-.81.47L12.7 18.97a1 1 0 0 0-1.2 0l-3.49 2.885a.5.5 0 0 1-.81-.47l1.523-8.495"></path></svg>
+              </span>
+              <div>Hodnocení 1</div>
             </div>
             <div class="rating-description">
               <strong>Minimální, potenciálně kontroverzní ocenění</strong>
@@ -350,12 +325,6 @@
             </div>
           </div>
         </div>
-      </div>
-
-      <div class="info-box">
-        <h4>O ceně Z.V. Tobolky</h4>
-        <p>Cena je udělována od roku 1995 <strong>Svazem knihovníků a informačních pracovníků České republiky (SKIP ČR)</strong> za mimořádný přínos českému knihovnictví.</p>
-        <p>Oceněním jsou poctěny osobnosti, které se dlouhodobě zasloužily o rozvoj knihovnické teorie, praxe, vzdělávání nebo organizace knihovnického oboru.</p>
       </div>
 
       <h3>Metodologický přístup</h3>
@@ -375,15 +344,94 @@
       <p style="margin-top: 2rem; padding-top: 2rem; border-top: 1px solid var(--border); color: var(--muted-foreground); font-size: 0.875rem;">
         <em>Tato metodika slouží k objektivnímu a transparentnímu hodnocení přínosu jednotlivých laureátů ceny Z.V. Tobolky. Hodnocení vychází z veřejně dostupných zdrojů a akademických standardů.</em>
       </p>
+
+      <h3 style="margin-top: 3rem;">2. Institucionální analýza</h3>
+
+      <div class="info-box">
+        <h4>V přípravě</h4>
+        <p>Druhý analytický přístup se zaměřuje na institucionální rozměr tobolkometrie - systematické mapování institucí a projektů podle počtu jejich laureátů ceny Z.V. Tobolky.</p>
+        <p><strong>Plánované výstupy:</strong></p>
+        <ul class="criteria-list">
+          <li>Pořadí institucí podle počtu laureátů (knihovny, univerzity, výzkumné ústavy)</li>
+          <li>Analýza projektů a iniciativ s nejvyšší koncentrací laureátů</li>
+          <li>Geografické rozložení laureátů podle působiště</li>
+          <li>Časový vývoj institucionální koncentrace (1995-současnost)</li>
+        </ul>
+        <p style="margin-top: 1rem; margin-bottom: 0;"><em>Tento typ analýzy představuje rozsáhlou výzkumnou práci vyžadující detailní sběr dat a validaci. Sledujte vývoj tohoto projektu na GitHubu.</em></p>
+      </div>
     </div>
   </div>
 
-  <footer>
-    <div>
-      <a href="index.html">Hlavní stránka</a>
-      <a href="https://sdruk.cz/seznam-ocenenych/" target="_blank" rel="noopener">Seznam oceněných (SKIP ČR)</a>
+  <footer role="contentinfo">
+    <div style="max-width: 1024px; margin: 0 auto;">
+      <nav aria-label="Navigace webu" style="margin-bottom: 2rem;">
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem; text-align: left;">
+          <div>
+            <h4 style="color: var(--primary-light); margin-bottom: 1rem; font-size: 1rem; font-weight: 600;">Navigace</h4>
+            <ul style="list-style: none; padding: 0;">
+              <li style="margin-bottom: 0.5rem;">
+                <a href="index.html" style="display: inline-flex; align-items: center; gap: 0.5rem;">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+                  Hlavní stránka
+                </a>
+              </li>
+              <li style="margin-bottom: 0.5rem;">
+                <a href="drzitele.html" style="display: inline-flex; align-items: center; gap: 0.5rem;">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                  Databáze držitelů ceny
+                </a>
+              </li>
+              <li style="margin-bottom: 0.5rem;">
+                <a href="metodika.html" style="display: inline-flex; align-items: center; gap: 0.5rem;">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" x2="12" y1="20" y2="10"></line><line x1="18" x2="18" y1="20" y2="4"></line><line x1="6" x2="6" y1="20" y2="16"></line></svg>
+                  Metodika hodnocení
+                </a>
+              </li>
+              <li style="margin-bottom: 0.5rem;">
+                <a href="clanky.html" style="display: inline-flex; align-items: center; gap: 0.5rem;">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>
+                  Články a výzkum
+                </a>
+              </li>
+              <li style="margin-bottom: 0.5rem;">
+                <a href="admin/" style="display: inline-flex; align-items: center; gap: 0.5rem;">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                  CMS Admin
+                </a>
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h4 style="color: var(--primary-light); margin-bottom: 1rem; font-size: 1rem; font-weight: 600;">Externí odkazy</h4>
+            <ul style="list-style: none; padding: 0;">
+              <li style="margin-bottom: 0.5rem;">
+                <a href="https://sdruk.cz/seznam-ocenenych/" target="_blank" rel="noopener" aria-label="Seznam oceněných na webu SKIP ČR (otevře se v novém okně)" style="display: inline-flex; align-items: center; gap: 0.5rem;">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
+                  Seznam oceněných (SKIP ČR) <span aria-hidden="true">↗</span>
+                </a>
+              </li>
+              <li style="margin-bottom: 0.5rem;">
+                <a href="https://github.com/demoklion/tobolkometrie" target="_blank" rel="noopener" aria-label="Repozitář projektu na GitHubu (otevře se v novém okně)" style="display: inline-flex; align-items: center; gap: 0.5rem;">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"></path><path d="M9 18c-4.51 2-5-2-7-2"></path></svg>
+                  GitHub repozitář <span aria-hidden="true">↗</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h4 style="color: var(--primary-light); margin-bottom: 1rem; font-size: 1rem; font-weight: 600;">O projektu</h4>
+            <p style="font-size: 0.875rem; line-height: 1.6;">
+              Vědecká analýza knihovnické obce se zaměřením na nositele ceny Z.V. Tobolky.
+            </p>
+          </div>
+        </div>
+      </nav>
+      <div style="border-top: 1px solid rgba(255,255,255,0.2); padding-top: 1.5rem; margin-top: 1.5rem; text-align: center;">
+        <p style="font-size: 0.875rem;">© 2025 Tobolkometrie. Vědecký projekt věnovaný analýze knihovnické obce.</p>
+      </div>
     </div>
-    <p style="margin-top: 1rem;">© 2025 Tobolkometrie</p>
+
+    <iframe src="https://demoklion.goatcounter.com?access-token=TOKEN" style="visibility: hidden; position: absolute;" aria-hidden="true"></iframe>
   </footer>
 </body>
 </html>
